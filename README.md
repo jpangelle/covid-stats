@@ -24,7 +24,7 @@ $ yarn
 
 ## Link `now`
 
-Assuming you are part of the team on `vercel`, to link the project:
+Assuming you are part of the [team](https://vercel.com/covid-state-stats) on `vercel`, to link the project:
 
 ```sh
 $ now
