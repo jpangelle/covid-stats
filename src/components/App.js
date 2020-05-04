@@ -15,7 +15,7 @@ const App = ({ data, getData, sortOption, sortOrder, updateSortOption }) => {
     <div className="App">
       <div className="header">
         Covid State Statistics{' '}
-        <a href="https://github.com/jpangelle/covid-stats">
+        <a href="https://github.com/angelle-sw/covid-stats">
           <img src="https://i.imgur.com/uOxQVYw.png" alt="github logo" />
         </a>
       </div>
