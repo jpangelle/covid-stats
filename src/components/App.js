@@ -30,9 +30,13 @@ const App = ({ data, getData, sortOption, sortOrder, updateSortOption }) => {
               sortOrder={sortOrder}
               updateSortOption={updateSortOption}
             />
-            <a href="https://www.worldometers.info/coronavirus/country/us/">
-              Source
-            </a>
+            <div className="sources">
+              <a href="https://datausa.io/">Population Source</a>
+              <span className="source-divider">|</span>
+              <a href="https://www.worldometers.info/coronavirus/country/us/">
+                COVID Source
+              </a>
+            </div>
           </>
         )}
       </div>

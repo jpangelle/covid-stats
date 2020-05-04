@@ -12,14 +12,14 @@
   margin: 50px 100px;
 }
 
-.container > a {
+.sources {
   justify-content: flex-end;
   display: flex;
   padding-top: 10px;
 }
 
-.header {
-  background: white;
+.source-divider {
+  padding: 0 5px;
 }
 
 table.ui.table {

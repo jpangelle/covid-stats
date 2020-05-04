@@ -22,6 +22,14 @@ Install dependencies:
 $ yarn
 ```
 
+## Link `now`
+
+Assuming you are part of the team on `vercel`, to link the project:
+
+```sh
+$ now
+```
+
 ## Start
 
 Start the development server at [http://localhost:3000](http://localhost:3000):
