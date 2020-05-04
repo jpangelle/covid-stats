@@ -16,16 +16,16 @@ export const data = (
       if (action.column === 'rank') {
         return state;
       }
-      if (state.sortOption === action.column && state.sortOrder === 'asc') {
+      if (state.sortOption === action.column && state.sortOrder === 'desc') {
         return {
           ...state,
-          sortOrder: 'desc',
+          sortOrder: 'asc',
           sortOption: action.column,
         };
       }
       return {
         ...state,
-        sortOrder: 'asc',
+        sortOrder: 'desc',
         sortOption: action.column,
       };
     default:
