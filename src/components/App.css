@@ -10,11 +10,10 @@
 .container {
   min-height: 100vh;
   margin: 50px 100px;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .sources {
-  justify-content: flex-end;
   display: flex;
   padding-top: 10px;
 }
