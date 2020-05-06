@@ -55,3 +55,11 @@ Run unit tests (implicitly re-runs on code changes):
 ```sh
 $ yarn test
 ```
+
+### Cypress Tests
+
+Run cypress tests
+
+```sh
+$ yarn cypress
+```
