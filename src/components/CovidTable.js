@@ -14,7 +14,7 @@ export const CovidTable = ({
   };
 
   const Headers = [
-    { columnDisplayName: 'DANKank', columnName: 'rank' },
+    { columnDisplayName: 'Rank', columnName: 'rank' },
     { columnDisplayName: 'State', columnName: 'state' },
     { columnDisplayName: 'Population', columnName: 'population' },
     { columnDisplayName: 'Cases', columnName: 'cases' },
