@@ -2,15 +2,15 @@ import React from 'react';
 import { Icon, Table } from 'semantic-ui-react';
 
 export const CovidTable = ({
-  data,
-  sortOption,
-  sortOrder,
-  updateSortOption,
+  sortedBy,
+  sortedColumn,
+  stateData,
+  updateSortColumn,
 }) => {
   const { Body, Cell, Header, HeaderCell, Row } = Table;
 
   const sortColumn = event => {
-    updateSortOption(event.target.dataset.columnName);
+    updateSortColumn(event.target.dataset.columnName);
   };
 
   const Headers = [
@@ -34,10 +34,10 @@ export const CovidTable = ({
               onClick={sortColumn}
             >
               {columnDisplayName}{' '}
-              {sortOption === columnName && (
+              {sortedColumn === columnName && (
                 <Icon
                   data-column-name={columnName}
-                  name={`chevron ${sortOrder === 'asc' ? 'up' : 'down'}`}
+                  name={`chevron ${sortedBy === 'asc' ? 'up' : 'down'}`}
                 />
               )}
             </HeaderCell>
@@ -45,7 +45,7 @@ export const CovidTable = ({
         </Row>
       </Header>
       <Body>
-        {data.map(
+        {stateData.map(
           (
             {
               cases,

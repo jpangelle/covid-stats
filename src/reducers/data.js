@@ -1,32 +1,32 @@
 export const data = (
   state = {
-    data: [],
-    sortOption: 'casesPerCapita',
-    sortOrder: 'desc',
+    sortedBy: 'desc',
+    sortedColumn: 'casesPerCapita',
+    stateData: [],
   },
   action,
 ) => {
   switch (action.type) {
-    case 'GET_DATA':
+    case 'GET_STATE_DATA':
       return {
         ...state,
-        data: action.data,
+        stateData: action.stateData,
       };
-    case 'UPDATE_SORT_OPTION':
+    case 'UPDATE_COLUMN_SORT':
       if (action.column === 'rank') {
         return state;
       }
-      if (state.sortOption === action.column && state.sortOrder === 'desc') {
+      if (state.sortedColumn === action.column && state.sortedBy === 'desc') {
         return {
           ...state,
-          sortOrder: 'asc',
-          sortOption: action.column,
+          sortedBy: 'asc',
+          sortedColumn: action.column,
         };
       }
       return {
         ...state,
-        sortOrder: 'desc',
-        sortOption: action.column,
+        sortedBy: 'desc',
+        sortedColumn: action.column,
       };
     default:
       return state;
