@@ -1,21 +1,12 @@
-import axios from 'axios';
+import { GET_STATE_DATA_ASYNC, UPDATE_COLUMN_SORT } from '../constants';
 
-const GET_DATA = 'GET_DATA';
-const UPDATE_SORT_OPTION = 'UPDATE_SORT_OPTION';
-
-const getData = () => {
-  return async dispatch => {
-    const { data } = await axios('/api/get-cases-deaths');
-    return dispatch({
-      type: GET_DATA,
-      data,
-    });
-  };
-};
-
-const updateSortOption = column => ({
-  type: UPDATE_SORT_OPTION,
-  column,
+const getStateData = () => ({
+  type: GET_STATE_DATA_ASYNC,
 });
 
-export { GET_DATA, getData, UPDATE_SORT_OPTION, updateSortOption };
+const updateSortColumn = column => ({
+  column,
+  type: UPDATE_COLUMN_SORT,
+});
+
+export { getStateData, updateSortColumn };

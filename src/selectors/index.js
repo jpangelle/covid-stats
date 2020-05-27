@@ -1,24 +1,24 @@
 import { createSelector } from 'reselect';
 import { orderBy } from 'lodash';
 
-const getData = state => state.data.data;
-const getColumnSort = state => state.data.sortOption;
-const getsortOrder = state => state.data.sortOrder;
+const getSortedBy = state => state.data.sortedBy;
+const getSortedColumn = state => state.data.sortedColumn;
+const getStateData = state => state.data.stateData;
 
-const getSortedColumn = createSelector(
-  [getColumnSort, getData, getsortOrder],
-  (sortOption, data, sortOrder) => {
-    if (sortOption === 'cases') {
-      return orderBy(data, ['cases.casesNum'], [sortOrder]);
+const sortColumn = createSelector(
+  [getSortedBy, getSortedColumn, getStateData],
+  (sortedBy, sortedColumn, stateData) => {
+    if (sortedColumn === 'cases') {
+      return orderBy(stateData, ['cases.casesNum'], [sortedBy]);
     }
-    if (sortOption === 'population') {
-      return orderBy(data, ['population.populationNum'], [sortOrder]);
+    if (sortedColumn === 'deaths') {
+      return orderBy(stateData, ['deaths.deathsNum'], [sortedBy]);
     }
-    if (sortOption === 'deaths') {
-      return orderBy(data, ['deaths.deathsNum'], [sortOrder]);
+    if (sortedColumn === 'population') {
+      return orderBy(stateData, ['population.populationNum'], [sortedBy]);
     }
-    return orderBy(data, [sortOption], [sortOrder]);
+    return orderBy(stateData, [sortedColumn], [sortedBy]);
   },
 );
 
-export default getSortedColumn;
+export { sortColumn };

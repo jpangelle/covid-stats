@@ -1,15 +1,21 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { CovidTable } from './CovidTable';
-import { getData, updateSortOption } from '../actions/index';
-import getSortedColumn from '../selectors';
+import { getStateData, updateSortColumn } from '../actions/index';
+import { sortColumn } from '../selectors';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 
-const App = ({ data, getData, sortOption, sortOrder, updateSortOption }) => {
+const App = ({
+  getStateData,
+  sortedBy,
+  sortedColumn,
+  stateData,
+  updateSortColumn,
+}) => {
   useEffect(() => {
-    getData();
-  }, [getData]);
+    getStateData();
+  }, [getStateData]);
 
   return (
     <div className="App">
@@ -20,15 +26,13 @@ const App = ({ data, getData, sortOption, sortOrder, updateSortOption }) => {
         </a>
       </div>
       <div className="container">
-        {!data.length ? (
-          <div className="ui active large text loader">Loading</div>
-        ) : (
+        {stateData.length ? (
           <>
             <CovidTable
-              data={data}
-              sortOption={sortOption}
-              sortOrder={sortOrder}
-              updateSortOption={updateSortOption}
+              sortedBy={sortedBy}
+              sortedColumn={sortedColumn}
+              updateSortColumn={updateSortColumn}
+              stateData={stateData}
             />
             <div className="sources">
               <a href="https://datausa.io/">Population Source</a>
@@ -38,21 +42,23 @@ const App = ({ data, getData, sortOption, sortOrder, updateSortOption }) => {
               </a>
             </div>
           </>
+        ) : (
+          <div className="ui active large text loader">Loading</div>
         )}
       </div>
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  data: getSortedColumn(state),
-  sortOption: state.data.sortOption,
-  sortOrder: state.data.sortOrder,
-});
-
-const mapDispatchToProps = {
-  getData,
-  updateSortOption,
+const mapStateToProps = state => {
+  const { sortedBy, sortedColumn } = state.data;
+  return {
+    sortedBy,
+    sortedColumn,
+    stateData: sortColumn(state),
+  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, { getStateData, updateSortColumn })(
+  App,
+);
