@@ -13,7 +13,7 @@ Statistics web app to display cases per capita and deaths per capita of US state
 Clone the repository:
 
 ```sh
-$ git clone git@github.com:angelle-sw/covid-stats.git
+$ git clone git@github.com:jpangelle/covid-stats.git
 ```
 
 Install dependencies:
@@ -23,8 +23,6 @@ $ yarn
 ```
 
 ## Link `now`
-
-Assuming you are part of the [team](https://vercel.com/covid-state-stats) on `vercel`, to link the project:
 
 ```sh
 $ now
