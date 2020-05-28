@@ -1,32 +1,34 @@
-export const data = (
-  state = {
-    sortedBy: 'desc',
-    sortedColumn: 'casesPerCapita',
-    stateData: [],
-  },
-  action,
-) => {
+import {
+  GET_STATE_DATA_ERROR,
+  GET_STATE_DATA_INIT,
+  GET_STATE_DATA_SUCCESS,
+} from '../constants';
+
+const initialState = {
+  error: undefined,
+  loading: true,
+  stateData: [],
+};
+
+export const data = (state = initialState, action) => {
   switch (action.type) {
-    case 'GET_STATE_DATA':
+    case GET_STATE_DATA_INIT:
       return {
         ...state,
-        stateData: action.stateData,
+        loading: true,
       };
-    case 'UPDATE_COLUMN_SORT':
-      if (action.column === 'rank') {
-        return state;
-      }
-      if (state.sortedColumn === action.column && state.sortedBy === 'desc') {
-        return {
-          ...state,
-          sortedBy: 'asc',
-          sortedColumn: action.column,
-        };
-      }
+    case GET_STATE_DATA_SUCCESS:
       return {
         ...state,
-        sortedBy: 'desc',
-        sortedColumn: action.column,
+        error: undefined,
+        loading: false,
+        stateData: action.payload,
+      };
+    case GET_STATE_DATA_ERROR:
+      return {
+        ...state,
+        error: action.payload.message,
+        loading: false,
       };
     default:
       return state;

@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import { orderBy } from 'lodash';
 
-const getSortedBy = state => state.data.sortedBy;
-const getSortedColumn = state => state.data.sortedColumn;
+const getSortedBy = state => state.column.sortedBy;
+const getSortedColumn = state => state.column.sortedColumn;
 const getStateData = state => state.data.stateData;
 
 const sortColumn = createSelector(

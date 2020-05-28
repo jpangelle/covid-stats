@@ -7,6 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/index';
 import { watchGetStateDataAsync } from './sagas/saga';
 import App from './components/App';
+import './index.css';
 
 const sagaMiddleware = createSagaMiddleware();
 
