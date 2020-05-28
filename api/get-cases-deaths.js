@@ -3,6 +3,59 @@ import cheerio from 'cheerio';
 import numeral from 'numeral';
 import { v4 as uuid } from 'uuid';
 
+const selectors = {
+  stateNodes: '#usa_table_countries_today tbody tr td:first-child',
+  casesNodes: '#usa_table_countries_today tbody tr td:nth-child(2)',
+  deathsNodes: '#usa_table_countries_today tbody tr td:nth-child(4)',
+};
+
+const trimAndRemoveCommas = str => {
+  return str.trim().replace(/,/g, '');
+};
+
+const getNodeData = ($, selector) => {
+  const nodes = $(selector);
+
+  const nodeData = [];
+
+  nodes.each(function () {
+    nodeData.push(trimAndRemoveCommas($(this).text()));
+  });
+
+  return nodeData;
+};
+
+const organizeData = (states, populationDataClean, stateCases, stateDeaths) =>
+  states.reduce((stateData, state, index) => {
+    const population = populationDataClean[state.toLowerCase()];
+    if (population) {
+      const casesNum = parseInt(stateCases[index].replace(/,/g, ''), 10);
+      const deathsNum = parseInt(stateDeaths[index].replace(/,/g, ''), 10);
+      const casesPerCapita = Number((casesNum / population).toFixed(5));
+      const deathsPerCapita = Number((deathsNum / population).toFixed(5));
+
+      stateData.push({
+        id: uuid(),
+        state,
+        cases: {
+          casesDisplay: numeral(casesNum).format('0,0'),
+          casesNum,
+        },
+        deaths: {
+          deathsDisplay: numeral(deathsNum).format('0,0'),
+          deathsNum,
+        },
+        population: {
+          populationDisplay: numeral(population).format('0,0'),
+          populationNum: population,
+        },
+        casesPerCapita,
+        deathsPerCapita,
+      });
+    }
+    return stateData;
+  }, []);
+
 export default async (req, res) => {
   try {
     const { data: casesData } = await axios(
@@ -20,68 +73,19 @@ export default async (req, res) => {
 
     const $ = cheerio.load(casesData);
 
-    const stateNodes = $('#usa_table_countries_today tbody tr td:first-child');
+    const states = getNodeData($, selectors.stateNodes);
+    const stateCases = getNodeData($, selectors.casesNodes);
+    const stateDeaths = getNodeData($, selectors.deathsNodes);
 
-    const states = [];
-
-    const trimAndRemoveCommas = str => {
-      return str.trim().replace(/,/g, '');
-    };
-
-    stateNodes.each(function () {
-      states.push($(this).text().trim());
-    });
-
-    const casesNodes = $('#usa_table_countries_today tbody tr td:nth-child(2)');
-
-    const stateCases = [];
-
-    casesNodes.each(function () {
-      stateCases.push(trimAndRemoveCommas($(this).text()));
-    });
-
-    const deathsNodes = $(
-      '#usa_table_countries_today tbody tr td:nth-child(4)',
+    const data = organizeData(
+      states,
+      populationDataClean,
+      stateCases,
+      stateDeaths,
     );
-
-    const stateDeaths = [];
-
-    deathsNodes.each(function () {
-      stateDeaths.push(trimAndRemoveCommas($(this).text()));
-    });
-
-    const data = states.reduce((stateData, state, index) => {
-      const population = populationDataClean[state.toLowerCase()];
-      if (population) {
-        const casesNum = parseInt(stateCases[index].replace(/,/g, ''), 10);
-        const deathsNum = parseInt(stateDeaths[index].replace(/,/g, ''), 10);
-        const casesPerCapita = Number((casesNum / population).toFixed(5));
-        const deathsPerCapita = Number((deathsNum / population).toFixed(5));
-
-        stateData.push({
-          id: uuid(),
-          state,
-          cases: {
-            casesDisplay: numeral(casesNum).format('0,0'),
-            casesNum,
-          },
-          deaths: {
-            deathsDisplay: numeral(deathsNum).format('0,0'),
-            deathsNum,
-          },
-          population: {
-            populationDisplay: numeral(population).format('0,0'),
-            populationNum: population,
-          },
-          casesPerCapita,
-          deathsPerCapita,
-        });
-      }
-      return stateData;
-    }, []);
 
     res.send(data);
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 };
