@@ -16,13 +16,11 @@ const trimAndRemoveCommas = str => {
 const getNodeData = ($, selector) => {
   const nodes = $(selector);
 
-  const nodeData = [];
-
-  nodes.each(function () {
-    nodeData.push(trimAndRemoveCommas($(this).text()));
-  });
-
-  return nodeData;
+  return nodes
+    .map(function () {
+      return trimAndRemoveCommas($(this).text());
+    })
+    .get();
 };
 
 const organizeData = (states, populationDataClean, stateCases, stateDeaths) =>
