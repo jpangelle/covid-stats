@@ -2,6 +2,10 @@
 
 Statistics web app to display cases per capita and deaths per capita of US states
 
+<div style="border: 1px solid #D8D8D8; border-radius: 2px;">
+  <img alt="app-screenshot" src="https://i.imgur.com/DDhwc1r.png" />
+</div>
+
 ## Requirements
 
 - `node` >= 8.10
