@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 import axios from 'axios';
 import cheerio from 'cheerio';
 import numeral from 'numeral';

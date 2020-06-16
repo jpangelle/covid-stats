@@ -6,24 +6,42 @@ module.exports = {
   },
   extends: [
     'airbnb',
-    'plugin:cypress/recommended',
-    'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'eslint-config-prettier',
   ],
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 11,
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['@typescript-eslint', 'eslint-plugin-prettier'],
   rules: {
-    'import/prefer-default-export': 'off',
-    'no-shadow': 'off',
-    'no-use-before-define': 'warn',
-    'react/jsx-filename-extension': 'off',
-    'react/jsx-one-expression-per-line': 'off',
-    'react/prop-types': 'off',
+    '@typescript-eslint/explicit-function-return-type': [0, false],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'import/prefer-default-export': [0, false],
+    'no-shadow': [0, false],
+    'prettier/prettier': 'error',
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
+    'react/jsx-one-expression-per-line': [0, false],
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
 };
