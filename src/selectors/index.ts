@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 import { orderBy } from 'lodash';
 
-const getSortedBy = state => state.column.sortedBy;
-const getSortedColumn = state => state.column.sortedColumn;
-const getStateData = state => state.data.stateData;
+const getSortedBy = (state: ReduxState) => state.column.sortedBy;
+const getSortedColumn = (state: ReduxState) => state.column.sortedColumn;
+const getStateData = (state: ReduxState) => state.data.stateData;
 
 const sortColumn = createSelector(
   [getSortedBy, getSortedColumn, getStateData],

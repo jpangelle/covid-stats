@@ -6,15 +6,29 @@ import { sortColumn } from '../selectors';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 
-const App = ({
-  error,
-  getStateData,
-  loading,
-  sortedBy,
-  sortedColumn,
-  stateData,
-  updateSortColumn,
-}) => {
+interface Props {
+  error: {
+    message: string;
+  };
+  getStateData: () => void;
+  loading: boolean;
+  sortedBy: string;
+  sortedColumn: string;
+  stateData: USStateDataArray;
+  updateSortColumn: UpdateSortOption;
+}
+
+const App = (props: Props) => {
+  const {
+    error,
+    getStateData,
+    loading,
+    sortedBy,
+    sortedColumn,
+    stateData,
+    updateSortColumn,
+  } = props;
+
   useEffect(() => {
     getStateData();
   }, [getStateData]);
@@ -41,7 +55,7 @@ const App = ({
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: ReduxState) => {
   const { sortedBy, sortedColumn } = state.column;
   const { error, loading } = state.data;
   return {

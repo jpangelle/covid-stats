@@ -4,7 +4,7 @@ const getStateData = () => ({
   type: GET_STATE_DATA_ASYNC,
 });
 
-const updateSortColumn = column => ({
+const updateSortColumn = (column: string | undefined) => ({
   column,
   type: UPDATE_COLUMN_SORT,
 });

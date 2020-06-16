@@ -2,14 +2,27 @@ import React from 'react';
 import { Icon } from 'semantic-ui-react';
 import { CovidTable } from './CovidTable';
 
-export const CovidTableContainer = ({
-  error,
-  loading,
-  sortedBy,
-  sortedColumn,
-  stateData,
-  updateSortColumn,
-}) => {
+interface Props {
+  error: {
+    message: string;
+  };
+  loading: boolean;
+  sortedBy: string;
+  sortedColumn: string;
+  stateData: USStateDataArray;
+  updateSortColumn: UpdateSortOption;
+}
+
+export const CovidTableContainer = (props: Props) => {
+  const {
+    error,
+    loading,
+    sortedBy,
+    sortedColumn,
+    stateData,
+    updateSortColumn,
+  } = props;
+
   if (loading) {
     return <div className="ui active large text loader" />;
   }

@@ -4,13 +4,21 @@ import {
   GET_STATE_DATA_SUCCESS,
 } from '../constants';
 
+interface Action {
+  error: {
+    message: string;
+  };
+  payload: USStateDataArray;
+  type: string;
+}
+
 const initialState = {
   error: undefined,
   loading: true,
   stateData: [],
 };
 
-export const data = (state = initialState, action) => {
+export const data = (state = initialState, action: Action) => {
   switch (action.type) {
     case GET_STATE_DATA_INIT:
       return {
@@ -27,7 +35,7 @@ export const data = (state = initialState, action) => {
     case GET_STATE_DATA_ERROR:
       return {
         ...state,
-        error: action.payload.message,
+        error: action.error.message,
         loading: false,
       };
     default:

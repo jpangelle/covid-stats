@@ -1,15 +1,19 @@
 import React from 'react';
 import { Icon, Table } from 'semantic-ui-react';
 
-export const CovidTable = ({
-  sortedBy,
-  sortedColumn,
-  stateData,
-  updateSortColumn,
-}) => {
+interface Props {
+  sortedBy: string;
+  sortedColumn: string;
+  stateData: USStateDataArray;
+  updateSortColumn: UpdateSortOption;
+}
+
+export const CovidTable = (props: Props) => {
+  const { sortedBy, sortedColumn, stateData, updateSortColumn } = props;
+
   const { Body, Cell, Header, HeaderCell, Row } = Table;
 
-  const sortColumn = event => {
+  const sortColumn = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateSortColumn(event.target.dataset.columnName);
   };
 
@@ -23,6 +27,13 @@ export const CovidTable = ({
     { columnDisplayName: 'Deaths Per Capita', columnName: 'deathsPerCapita' },
   ];
 
+  const computeIconName = () => {
+    if (sortedBy === 'asc') {
+      return 'chevron up';
+    }
+    return 'chevron down';
+  };
+
   return (
     <Table className="celled striped unstackable">
       <Header>
@@ -35,10 +46,7 @@ export const CovidTable = ({
             >
               {columnDisplayName}{' '}
               {sortedColumn === columnName && (
-                <Icon
-                  data-column-name={columnName}
-                  name={`chevron ${sortedBy === 'asc' ? 'up' : 'down'}`}
-                />
+                <Icon data-column-name={columnName} name={computeIconName()} />
               )}
             </HeaderCell>
           ))}

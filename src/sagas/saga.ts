@@ -17,7 +17,7 @@ function* getStateDataAsync() {
     const { data } = yield call(getCasesDeaths);
     yield put({ type: GET_STATE_DATA_SUCCESS, payload: data });
   } catch (error) {
-    yield put({ type: GET_STATE_DATA_ERROR, payload: error });
+    yield put({ type: GET_STATE_DATA_ERROR, error });
   }
 }
 
