@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon, Table } from 'semantic-ui-react';
-import { HEADERS } from '../constants';
+import { HEADERS } from '../../constants';
 
 const { Header, HeaderCell, Row } = Table;
 

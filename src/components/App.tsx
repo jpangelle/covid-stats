@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { CovidTableContainer } from './CovidTableContainer';
+import { CovidTableContainer } from './CovidTable/CovidTableContainer';
 import { getStateData, updateSortColumn } from '../actions/index';
 import { sortColumn } from '../selectors';
 import './App.css';
