@@ -15,15 +15,13 @@ export const CovidTable = ({
   sortedColumn,
   stateData,
   updateSortColumn,
-}: Props) => {
-  return (
-    <Table className="celled striped unstackable">
-      <CovidTableHeader
-        sortedBy={sortedBy}
-        sortedColumn={sortedColumn}
-        updateSortColumn={updateSortColumn}
-      />
-      <CovidTableBody stateData={stateData} />
-    </Table>
-  );
-};
+}: Props) => (
+  <Table className="celled striped unstackable">
+    <CovidTableHeader
+      sortedBy={sortedBy}
+      sortedColumn={sortedColumn}
+      updateSortColumn={updateSortColumn}
+    />
+    <CovidTableBody stateData={stateData} />
+  </Table>
+);

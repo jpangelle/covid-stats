@@ -21,16 +21,14 @@ export const CovidTableRow = ({
   populationDisplay,
   state,
   rank,
-}: Props) => {
-  return (
-    <Row>
-      <Cell>{rank}</Cell>
-      <Cell>{state}</Cell>
-      <Cell>{populationDisplay}</Cell>
-      <Cell>{casesDisplay}</Cell>
-      <Cell>{casesPerCapita}</Cell>
-      <Cell>{deathsDisplay}</Cell>
-      <Cell>{deathsPerCapita}</Cell>
-    </Row>
-  );
-};
+}: Props) => (
+  <Row>
+    <Cell>{rank}</Cell>
+    <Cell>{state}</Cell>
+    <Cell>{populationDisplay}</Cell>
+    <Cell>{casesDisplay}</Cell>
+    <Cell>{casesPerCapita}</Cell>
+    <Cell>{deathsDisplay}</Cell>
+    <Cell>{deathsPerCapita}</Cell>
+  </Row>
+);
