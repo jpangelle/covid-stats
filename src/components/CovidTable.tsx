@@ -5,12 +5,15 @@ interface Props {
   sortedBy: string;
   sortedColumn: string;
   stateData: USStateDataArray;
-  updateSortColumn: UpdateSortOption;
+  updateSortColumn: UpdateSortColumn;
 }
 
-export const CovidTable = (props: Props) => {
-  const { sortedBy, sortedColumn, stateData, updateSortColumn } = props;
-
+export const CovidTable = ({
+  sortedBy,
+  sortedColumn,
+  stateData,
+  updateSortColumn,
+}: Props) => {
   const { Body, Cell, Header, HeaderCell, Row } = Table;
 
   const sortColumn = (event: React.ChangeEvent<HTMLInputElement>) => {

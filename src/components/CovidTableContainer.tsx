@@ -10,19 +10,17 @@ interface Props {
   sortedBy: string;
   sortedColumn: string;
   stateData: USStateDataArray;
-  updateSortColumn: UpdateSortOption;
+  updateSortColumn: UpdateSortColumn;
 }
 
-export const CovidTableContainer = (props: Props) => {
-  const {
-    error,
-    loading,
-    sortedBy,
-    sortedColumn,
-    stateData,
-    updateSortColumn,
-  } = props;
-
+export const CovidTableContainer = ({
+  error,
+  loading,
+  sortedBy,
+  sortedColumn,
+  stateData,
+  updateSortColumn,
+}: Props) => {
   if (loading) {
     return <div className="ui active large text loader" />;
   }

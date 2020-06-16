@@ -15,20 +15,18 @@ interface Props {
   sortedBy: string;
   sortedColumn: string;
   stateData: USStateDataArray;
-  updateSortColumn: UpdateSortOption;
+  updateSortColumn: UpdateSortColumn;
 }
 
-const App = (props: Props) => {
-  const {
-    error,
-    getStateData,
-    loading,
-    sortedBy,
-    sortedColumn,
-    stateData,
-    updateSortColumn,
-  } = props;
-
+const App = ({
+  error,
+  getStateData,
+  loading,
+  sortedBy,
+  sortedColumn,
+  stateData,
+  updateSortColumn,
+}: Props) => {
   useEffect(() => {
     getStateData();
   }, [getStateData]);
