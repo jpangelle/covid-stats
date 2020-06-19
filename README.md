@@ -1,6 +1,8 @@
-## Covid Stats
+# Covid State Statistics
 
-Statistics web app to display cases per capita and deaths per capita of US states
+Demo: [https://covid19-state-stats.now.sh](https://covid19-state-stats.now.sh)
+
+##### Statistics web app to display cases per capita and deaths per capita of US states
 
 <div style="border: 1px solid #D8D8D8; border-radius: 2px;">
   <img alt="app-screenshot" src="https://i.imgur.com/DDhwc1r.png" />
@@ -56,12 +58,4 @@ Run unit tests (implicitly re-runs on code changes):
 
 ```sh
 $ yarn test
-```
-
-### Cypress Tests
-
-Run cypress tests
-
-```sh
-$ yarn cypress
 ```
