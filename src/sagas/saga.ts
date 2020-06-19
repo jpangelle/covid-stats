@@ -1,26 +1,20 @@
 import axios from 'axios';
 import { call, put, takeEvery } from 'redux-saga/effects';
-import {
-  GET_STATE_DATA_ASYNC,
-  GET_STATE_DATA_ERROR,
-  GET_STATE_DATA_INIT,
-  GET_STATE_DATA_SUCCESS,
-} from '../constants';
+import { getStateDataAsync } from '../actions';
 
 const getCasesDeaths = () => {
   return axios('/api/get-cases-deaths');
 };
 
-function* getStateDataAsync() {
-  yield put({ type: GET_STATE_DATA_INIT });
+function* getStateData() {
   try {
     const { data } = yield call(getCasesDeaths);
-    yield put({ type: GET_STATE_DATA_SUCCESS, payload: data });
+    yield put(getStateDataAsync.success(data));
   } catch (error) {
-    yield put({ type: GET_STATE_DATA_ERROR, error });
+    yield put(getStateDataAsync.failure(error));
   }
 }
 
 export function* watchGetStateDataAsync() {
-  yield takeEvery(GET_STATE_DATA_ASYNC, getStateDataAsync);
+  yield takeEvery(getStateDataAsync.request, getStateData);
 }

@@ -7,9 +7,7 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 
 interface Props {
-  error: {
-    message: string;
-  };
+  error: Error;
   getStateData: () => void;
   loading: boolean;
   sortedBy: string;

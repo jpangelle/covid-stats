@@ -1,12 +1,20 @@
-import { GET_STATE_DATA_ASYNC, UPDATE_COLUMN_SORT } from '../constants';
+import { action, createAsyncAction } from 'typesafe-actions';
+import {
+  GET_STATE_DATA_FAILURE,
+  GET_STATE_DATA_REQUEST,
+  GET_STATE_DATA_SUCCESS,
+  UPDATE_COLUMN_SORT,
+} from '../constants';
 
-const getStateData = () => ({
-  type: GET_STATE_DATA_ASYNC,
-});
+const getStateDataAsync = createAsyncAction(
+  GET_STATE_DATA_REQUEST,
+  GET_STATE_DATA_SUCCESS,
+  GET_STATE_DATA_FAILURE,
+)<boolean, USStateDataArray, Error>();
 
-const updateSortColumn = (column: string | undefined) => ({
-  column,
-  type: UPDATE_COLUMN_SORT,
-});
+const getStateData = () => action(GET_STATE_DATA_REQUEST);
 
-export { getStateData, updateSortColumn };
+const updateSortColumn = (column?: string) =>
+  action(UPDATE_COLUMN_SORT, { column });
+
+export { getStateData, getStateDataAsync, updateSortColumn };

@@ -25,9 +25,7 @@ interface ReduxState {
     sortedColumn: string;
   };
   data: {
-    error: {
-      message: string;
-    };
+    error: Error;
     loading: boolean;
     stateData: USStateDataArray;
   };

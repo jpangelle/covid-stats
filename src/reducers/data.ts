@@ -1,15 +1,15 @@
-import {
-  GET_STATE_DATA_ERROR,
-  GET_STATE_DATA_INIT,
-  GET_STATE_DATA_SUCCESS,
-} from '../constants';
+import { createReducer } from 'typesafe-actions';
+import { getStateDataAsync } from '../actions';
 
 interface Action {
-  error: {
-    message: string;
-  };
-  payload: USStateDataArray;
+  payload: USStateDataArray | Error;
   type: string;
+}
+
+interface State {
+  error: Error;
+  loading: boolean;
+  stateData: USStateDataArray;
 }
 
 const initialState = {
@@ -18,27 +18,19 @@ const initialState = {
   stateData: [],
 };
 
-export const data = (state = initialState, action: Action) => {
-  switch (action.type) {
-    case GET_STATE_DATA_INIT:
-      return {
-        ...state,
-        loading: true,
-      };
-    case GET_STATE_DATA_SUCCESS:
-      return {
-        ...state,
-        error: undefined,
-        loading: false,
-        stateData: action.payload,
-      };
-    case GET_STATE_DATA_ERROR:
-      return {
-        ...state,
-        error: action.error.message,
-        loading: false,
-      };
-    default:
-      return state;
-  }
-};
+export const dataReducer = createReducer(initialState)
+  .handleAction(getStateDataAsync.request, (state: State) => ({
+    ...state,
+    loading: true,
+  }))
+  .handleAction(getStateDataAsync.success, (state: State, action: Action) => ({
+    ...state,
+    error: undefined,
+    loading: false,
+    stateData: action.payload,
+  }))
+  .handleAction(getStateDataAsync.failure, (state: State, action: Action) => ({
+    ...state,
+    error: action.payload,
+    loading: false,
+  }));

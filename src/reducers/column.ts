@@ -1,8 +1,16 @@
+import { createReducer } from 'typesafe-actions';
 import { UPDATE_COLUMN_SORT } from '../constants';
 
 interface Action {
-  column: string;
+  payload: {
+    column: string;
+  };
   type: string;
+}
+
+interface State {
+  sortedBy: string;
+  sortedColumn: string;
 }
 
 const initialState = {
@@ -10,25 +18,26 @@ const initialState = {
   sortedColumn: 'casesPerCapita',
 };
 
-export const column = (state = initialState, action: Action) => {
-  switch (action.type) {
-    case UPDATE_COLUMN_SORT:
-      if (action.column === 'rank') {
-        return state;
-      }
-      if (state.sortedColumn === action.column && state.sortedBy === 'desc') {
-        return {
-          ...state,
-          sortedBy: 'asc',
-          sortedColumn: action.column,
-        };
-      }
+export const columnReducer = createReducer(initialState).handleType(
+  UPDATE_COLUMN_SORT,
+  (state: State, action: Action) => {
+    if (action.payload.column === 'rank') {
+      return state;
+    }
+    if (
+      state.sortedColumn === action.payload.column &&
+      state.sortedBy === 'desc'
+    ) {
       return {
         ...state,
-        sortedBy: 'desc',
-        sortedColumn: action.column,
+        sortedBy: 'asc',
+        sortedColumn: action.payload.column,
       };
-    default:
-      return state;
-  }
-};
+    }
+    return {
+      ...state,
+      sortedBy: 'desc',
+      sortedColumn: action.payload.column,
+    };
+  },
+);

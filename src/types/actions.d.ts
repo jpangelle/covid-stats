@@ -1,1 +1,1 @@
-type UpdateSortColumn = (column: string | undefined) => void;
+type UpdateSortColumn = (column?: string) => void;
