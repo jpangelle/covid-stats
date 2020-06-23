@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
-import { CovidTableHeader } from './CovidTableHeader';
-import { CovidTableBody } from './CovidTableBody';
+import { TableHeader } from './TableHeader';
+import { TableBody } from './TableBody';
 
 interface Props {
   sortedBy: string;
@@ -17,11 +17,11 @@ export const CovidTable = ({
   updateSortColumn,
 }: Props) => (
   <Table className="celled striped unstackable">
-    <CovidTableHeader
+    <TableHeader
       sortedBy={sortedBy}
       sortedColumn={sortedColumn}
       updateSortColumn={updateSortColumn}
     />
-    <CovidTableBody stateData={stateData} />
+    <TableBody stateData={stateData} />
   </Table>
 );

@@ -3,7 +3,7 @@ import { Icon } from 'semantic-ui-react';
 import { CovidTable } from './CovidTable';
 
 interface Props {
-  error: Error;
+  error?: Error;
   loading: boolean;
   sortedBy: string;
   sortedColumn: string;
@@ -11,7 +11,7 @@ interface Props {
   updateSortColumn: UpdateSortColumn;
 }
 
-export const CovidTableContainer = ({
+export const TableContainer = ({
   error,
   loading,
   sortedBy,

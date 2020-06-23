@@ -7,12 +7,12 @@ interface Action {
 }
 
 interface State {
-  error: Error;
+  error?: Error;
   loading: boolean;
   stateData: USStateDataArray;
 }
 
-const initialState = {
+const initialState: State = {
   error: undefined,
   loading: true,
   stateData: [],

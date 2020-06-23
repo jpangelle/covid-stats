@@ -1,6 +1,7 @@
 import React from 'react';
-import { Icon, Table } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import { HEADERS } from '../../constants';
+import { TableHeaderContents } from './TableHeaderContents';
 
 const { Header, HeaderCell, Row } = Table;
 
@@ -10,18 +11,11 @@ interface Props {
   updateSortColumn: UpdateSortColumn;
 }
 
-export const CovidTableHeader = ({
+export const TableHeader = ({
   sortedBy,
   sortedColumn,
   updateSortColumn,
 }: Props) => {
-  const computeIconName = () => {
-    if (sortedBy === 'asc') {
-      return 'chevron up';
-    }
-    return 'chevron down';
-  };
-
   const sortColumn = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateSortColumn(event.target.dataset.columnName);
   };
@@ -35,10 +29,12 @@ export const CovidTableHeader = ({
             key={columnName}
             onClick={sortColumn}
           >
-            {columnDisplayName}{' '}
-            {sortedColumn === columnName && (
-              <Icon data-column-name={columnName} name={computeIconName()} />
-            )}
+            <TableHeaderContents
+              columnDisplayName={columnDisplayName}
+              columnName={columnName}
+              sortedBy={sortedBy}
+              sortedColumn={sortedColumn}
+            />
           </HeaderCell>
         ))}
       </Row>

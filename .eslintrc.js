@@ -31,11 +31,13 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'import/no-extraneous-dependencies': [2, { devDependencies: true }],
     'import/prefer-default-export': [0, false],
     'no-shadow': [0, false],
     'prettier/prettier': 'error',
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
+    'react/jsx-filename-extension': [2, { extensions: ['.tsx'] }],
     'react/jsx-one-expression-per-line': [0, false],
+    'react/jsx-props-no-spreading': [0, false],
   },
   settings: {
     'import/resolver': {

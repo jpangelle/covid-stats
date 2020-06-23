@@ -13,7 +13,7 @@ interface Props {
   rank: number;
 }
 
-export const CovidTableRow = ({
+export const TableDataRow = ({
   casesDisplay,
   casesPerCapita,
   deathsDisplay,

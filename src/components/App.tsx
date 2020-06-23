@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { CovidTableContainer } from './CovidTable/CovidTableContainer';
+import { TableContainer } from './CovidTable/TableContainer';
 import { getStateData, updateSortColumn } from '../actions/index';
 import { sortColumn } from '../selectors';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 
 interface Props {
-  error: Error;
+  error?: Error;
   getStateData: () => void;
   loading: boolean;
   sortedBy: string;
@@ -38,7 +38,7 @@ const App = ({
         </a>
       </div>
       <div className="container">
-        <CovidTableContainer
+        <TableContainer
           error={error}
           loading={loading}
           sortedBy={sortedBy}

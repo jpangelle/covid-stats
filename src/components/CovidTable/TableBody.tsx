@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
-import { CovidTableRow } from './CovidTableDataRow';
+import { TableDataRow } from './TableDataRow';
 
 const { Body } = Table;
 
@@ -8,7 +8,7 @@ interface Props {
   stateData: USStateDataArray;
 }
 
-export const CovidTableBody = ({ stateData }: Props) => (
+export const TableBody = ({ stateData }: Props) => (
   <Body>
     {stateData.map(
       (
@@ -23,7 +23,7 @@ export const CovidTableBody = ({ stateData }: Props) => (
         },
         index,
       ) => (
-        <CovidTableRow
+        <TableDataRow
           casesDisplay={cases.casesDisplay}
           casesPerCapita={casesPerCapita}
           deathsDisplay={deaths.deathsDisplay}
