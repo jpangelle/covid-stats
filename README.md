@@ -10,9 +10,9 @@ Demo: [https://covid19-state-stats.now.sh](https://covid19-state-stats.now.sh)
 
 ## Requirements
 
-- `node` >= 8.10
+- [`node`](https://nodejs.org/) >= 8.10
 - [`yarn`](https://classic.yarnpkg.com/en/docs/install#mac-stable) CLI
-- [`now`](https://vercel.com/download) CLI
+- [`vercel`](https://vercel.com/download) CLI
 
 ## Setup
 
@@ -28,10 +28,10 @@ Install dependencies:
 $ yarn
 ```
 
-## Link `now`
+## Link `vercel`
 
 ```sh
-$ now
+$ vercel
 ```
 
 ## Start
@@ -39,7 +39,7 @@ $ now
 Start the development server at [http://localhost:3000](http://localhost:3000):
 
 ```sh
-$ now dev
+$ vercel dev
 ```
 
 ## Lint and Test
