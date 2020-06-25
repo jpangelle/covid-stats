@@ -13,7 +13,7 @@ interface State {
   sortedColumn: string;
 }
 
-const initialState = {
+const initialState: State = {
   sortedBy: 'desc',
   sortedColumn: 'casesPerCapita',
 };

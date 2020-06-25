@@ -10,7 +10,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "3.4.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^1.1.3",
@@ -25,7 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/.bin/eslint . --ext js,jsx,ts,tsx"
+    "lint": "./node_modules/.bin/eslint . --ext js,jsx,ts,tsx",
+    "coverage": "yarn test --coverage --watchAll=false && open coverage/lcov-report/index.html"
   },
   "browserslist": {
     "production": [
