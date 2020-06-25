@@ -5,7 +5,7 @@ const getSortedBy = (state: ReduxState) => state.column.sortedBy;
 const getSortedColumn = (state: ReduxState) => state.column.sortedColumn;
 const getStateData = (state: ReduxState) => state.data.stateData;
 
-const sortColumn = createSelector(
+export const sortColumn = createSelector(
   [getSortedBy, getSortedColumn, getStateData],
   (sortedBy, sortedColumn, stateData) => {
     if (sortedColumn === 'cases') {
@@ -20,5 +20,3 @@ const sortColumn = createSelector(
     return orderBy(stateData, [sortedColumn], [sortedBy]);
   },
 );
-
-export { sortColumn };
