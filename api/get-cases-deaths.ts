@@ -5,9 +5,9 @@ import numeral from 'numeral';
 import { v4 as uuid } from 'uuid';
 
 const selectors = {
-  stateNodes: '#usa_table_countries_today tbody tr td:first-child',
-  casesNodes: '#usa_table_countries_today tbody tr td:nth-child(2)',
-  deathsNodes: '#usa_table_countries_today tbody tr td:nth-child(4)',
+  stateNodes: '#usa_table_countries_today tbody tr td:nth-child(2)',
+  casesNodes: '#usa_table_countries_today tbody tr td:nth-child(3)',
+  deathsNodes: '#usa_table_countries_today tbody tr td:nth-child(5)',
 };
 
 const trimAndRemoveCommas = str => {
